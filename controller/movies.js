@@ -1,17 +1,25 @@
-const movies = require('./movies')
- 
+const movies = require('../movies.js')
+const nono = (req,res) => {
+    return res.sendStatus(404)
+}
 const getMovies = (req,res) => {
     return res.send(movies)
 }
-// const getDirector = (req,res) => {
-//     const
-// }
-const getMovieorDirector = (req,res) => {
-    const {title} = req.params
-    const moviesTitle = movies.filter((movie) => {
-        return movie.title.toLowerCase().includes(title.toLowerCase())
+const gettitleorDirector = (req,res) => {
+    const { lookup } = req.params
+    const movie = movies.filter(movie => {
+        return movie.title.toLowerCase().
+          includes(lookup.toLowerCase()) ||
+          movie.directors.find(director => 
+          director.toLowerCase().
+          includes(lookup.toLowerCase()))
+      })
+      if (!movie.length){
+           return nono()
+      }
+      return res.send(movie)
+    }
 
 
-module.exports = { getMovies, 
-    getMovie}
+module.exports = { getMovies, gettitleorDirector, nono}
     

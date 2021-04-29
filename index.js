@@ -1,17 +1,12 @@
 const express = require('express')
-const teams = require('./teams.js')
-const {getAllTeams, getTeam, addNewTeam} = require('./controller/teams')
-const bodyParser = require('body-parser')
+const movies = require('./movies')
+const {getMovies, gettitleorDirector, nono} = require('./controller/movies')
 const app = express()
-
-app.get('/teams', getAllTeams)
-app.get('/teams/:id',getTeam) 
 app.use(express.json())
-app.post('/teams', addNewTeam)
-app.all('*', (req,res) => {
-    return res.sendStatus(404)
-})
-
-app.listen(3370, () => {
-    console.log('listening on 3370...')
-})
+ app.get('/movies', getMovies)
+ app.get('/movies/:lookup', gettitleorDirector)
+ app.all('*', nono)
+ app.listen(2270, () => {
+     console.log('i am 2270')
+ })
+ 
