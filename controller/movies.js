@@ -11,12 +11,12 @@ const gettitleorDirector = (req,res) => {
           movie.directors.find(director => 
           director.toLowerCase().
           includes(lookup.toLowerCase()))
-      })
+    })
       if (!movie.length){
            return res.sendStatus(404)
-      }
-      return res.send(movie)
     }
+           return res.send(movie)
+}   
 const addnewMovie = (req,res) => {
     const {title, directors, runTime, 
         genres, releaseDate, rating} = req.body
@@ -34,5 +34,6 @@ const addnewMovie = (req,res) => {
 }
 
 
-module.exports = { getMovies, gettitleorDirector,  addnewMovie}
+module.exports = { getMovies, gettitleorDirector,  
+                   addnewMovie}
     
