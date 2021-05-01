@@ -1,8 +1,5 @@
 const { request } = require('express')
 const movies = require('../movies.js')
-const nono = (req,res) => {
-    return res.sendStatus(404)
-}
 const getMovies = (req,res) => {
     return res.send(movies)
 }
@@ -16,7 +13,7 @@ const gettitleorDirector = (req,res) => {
           includes(lookup.toLowerCase()))
       })
       if (!movie.length){
-           return nono
+           return res.sendStatus(404)
       }
       return res.send(movie)
     }
@@ -37,5 +34,5 @@ const addnewMovie = (req,res) => {
 }
 
 
-module.exports = { getMovies, gettitleorDirector, nono, addnewMovie}
+module.exports = { getMovies, gettitleorDirector,  addnewMovie}
     
